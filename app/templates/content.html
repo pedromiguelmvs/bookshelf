@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/add" method="post">
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="title" placeholder="Título do produto" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" name="description" cols="100"
+                                      placeholder="Adicione a descrição" required></textarea>
+                        </div>
+                        <button class="btn btn-primary" type="submit">
+                            Adicionar
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <table class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Produto</th>
+                    <th>Descrição</th>
+                    <th>Opções</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for entry in entries %}
+                <tr>
+                    <td>{{ entry.id }}</td>
+                    <td><strong>{{ entry.title }}</strong></td>
+                    <td>{{ entry.description }}</td>
+                    <td>                        
+                        <a class="btn btn-danger"
+                           href="/delete/{{ entry.id }}">
+                            Remover
+                        </a>
+                        <a class="btn btn-info"
+                           href="/update/{{ entry.id }}">
+                            Editar
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+
+
